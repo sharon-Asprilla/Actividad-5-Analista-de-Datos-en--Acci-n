@@ -60,6 +60,36 @@ ventas_norte = df[(df['sucursal'] == 'Norte') & (df['cantidad'] >= 2)]
 print(ventas_norte)
 print()
 
+df['total_venta'] = df['cantidad'] * df['precio_unitario']
+print("DataFrame con columna total_venta")
+print(df[['id_venta','producto','cantidad','precio_unitario','total_venta']])
+print()
+
+print("agrupacion por sucursal ")
+metricas_sucursal = df.groupby('sucursal')['total_venta'].agg(['sum','mean'])
+print(metricas_sucursal)
+print()
+
+print("Agrupación por sucursal (sum y mean)")
+metricas_sucursal = df.groupby('sucursal')['total_venta'].agg(['sum','mean'])
+print(metricas_sucursal)
+print()
+
+
+df_presupuestos = pd.DataFrame({
+    'categoria': ['Computación', 'Accesorios', 'Periféricos'],
+    'presupuesto_marketing': [5000, 1500, 2000]
+})
+print("DataFrame de presupuestos")
+print(df_presupuestos)
+print()
+
+
+df_merge = pd.merge(df, df_presupuestos, on='categoria', how='left')
+print("DataFrame fusionado con presupuestos")
+print(df_merge)
+print()
+
 
 
 
