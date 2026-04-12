@@ -39,9 +39,27 @@ print(filtro_producto)
 
 print()
 print("manejo de nulos")
+df['cantidad'] = df['cantidad'].fillna(1)
+print(df['cantidad'])
+print()
 
-#df_test['cantidad'] = df_test['cantidad'].fillna(1)
-#print(df_test)
 
 print("astype ")
-df_ventas.dtypes
+df['precio_unitario'] = df['precio_unitario'].astype(float)
+df['sucursal'] = df['sucursal'].astype("category")
+print(df.dtypes)
+print()
+
+print("filtro precio_unitario > 150")
+ventas_fuertes = df[df['precio_unitario'] > 150.0]
+print(ventas_fuertes)
+print()
+
+print("filtro  sucursal 'Norte' y cantidad >= 2")
+ventas_norte = df[(df['sucursal'] == 'Norte') & (df['cantidad'] >= 2)]
+print(ventas_norte)
+print()
+
+
+
+
